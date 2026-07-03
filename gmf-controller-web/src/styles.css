@@ -1,0 +1,57 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #f5f7fb;
+}
+
+.admin-shell {
+  min-height: 100vh;
+}
+
+.brand {
+  height: 56px;
+  padding: 0 20px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 56px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 24px;
+  font-weight: 600;
+}
+
+.admin-content {
+  padding: 24px;
+}
+
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background: #f5f7fb;
+}
+
+.login-panel {
+  width: min(100%, 360px);
+  text-align: center;
+}
+
+.login-icon {
+  color: #1677ff;
+  font-size: 48px;
+}
+
+.login-button {
+  margin-top: 24px;
+}

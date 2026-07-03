@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="panel">
+    <text class="title">我的</text>
+    <text class="muted">用户信息和授权状态后续在这里展开</text>
+  </view>
+</view>
