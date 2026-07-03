@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="panel">
+    <text class="title">借款</text>
+    <text class="muted">借入、借出和微信转发查看后续在这里展开</text>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+.module-list {
+  display: grid;
+  gap: 24rpx;
+  margin-top: 32rpx;
+}
+
+.module-button {
+  width: 100%;
+  border-radius: 12rpx;
+  background: #1677ff;
+  color: #ffffff;
+}

@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="panel">
+    <text class="title">Give Me Five</text>
+    <text class="muted">生活记录入口</text>
+  </view>
+  <view class="module-list">
+    <button
+      wx:for="{{modules}}"
+      wx:key="name"
+      class="module-button"
+      bindtap="openModule"
+      data-path="{{item.path}}"
+    >
+      {{item.name}}
+    </button>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: gmf-controller
+  datasource:
+    url: ${GMF_DB_URL:jdbc:postgresql://localhost:5432/gmf}
+    username: ${GMF_DB_USERNAME:gmf}
+    password: ${GMF_DB_PASSWORD:gmf_dev_password}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+gmf:
+  crypto:
+    data-key: ${GMF_CRYPTO_DATA_KEY:change-me-in-dev}
+  auth:
+    jwt-secret: ${GMF_AUTH_JWT_SECRET:change-me-in-dev}
+    admin-wechat-openid: ${GMF_ADMIN_WECHAT_OPENID:}

@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: gmf
+      POSTGRES_USER: gmf
+      POSTGRES_PASSWORD: gmf_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - gmf-postgres:/var/lib/postgresql/data
+
+volumes:
+  gmf-postgres:

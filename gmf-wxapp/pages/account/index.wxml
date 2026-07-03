@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="panel">
+    <text class="title">记账</text>
+    <text class="muted">账单、收入、语音和截图识别后续在这里展开</text>
+  </view>
+</view>

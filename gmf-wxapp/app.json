@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/account/index",
+    "pages/debt/index",
+    "pages/merchant/index",
+    "pages/profile/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "Give Me Five",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f8fa"
+  },
+  "tabBar": {
+    "color": "#6b7280",
+    "selectedColor": "#1677ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/account/index",
+        "text": "记账"
+      },
+      {
+        "pagePath": "pages/debt/index",
+        "text": "借款"
+      },
+      {
+        "pagePath": "pages/merchant/index",
+        "text": "小商户"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

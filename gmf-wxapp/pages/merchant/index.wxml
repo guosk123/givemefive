@@ -1,0 +1,6 @@
+<view class="page">
+  <view class="panel">
+    <text class="title">小商户</text>
+    <text class="muted">进价、售价、库存和快速搜索后续在这里展开</text>
+  </view>
+</view>

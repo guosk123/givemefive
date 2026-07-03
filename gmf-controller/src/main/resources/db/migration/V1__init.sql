@@ -1,0 +1,1 @@
+-- Initial schema placeholder. Add business tables with explicit encrypted columns as requirements are finalized.
