@@ -1,6 +1,90 @@
 <view class="page">
-  <view class="panel">
-    <text class="title">记账</text>
-    <text class="muted">账单、收入、语音和截图识别后续在这里展开</text>
+  <view class="summary-grid">
+    <view class="summary-item income">
+      <text class="summary-label">收入</text>
+      <text class="summary-value">¥{{incomeTotalText}}</text>
+    </view>
+    <view class="summary-item expense">
+      <text class="summary-label">支出</text>
+      <text class="summary-value">¥{{expenseTotalText}}</text>
+    </view>
+    <view class="summary-item balance">
+      <text class="summary-label">结余</text>
+      <text class="summary-value">¥{{balanceText}}</text>
+    </view>
+  </view>
+
+  <view class="panel form-panel">
+    <view class="type-switch">
+      <button
+        class="type-button {{recordType === 'EXPENSE' ? 'active expense-active' : ''}}"
+        data-type="EXPENSE"
+        bindtap="switchRecordType"
+      >
+        支出
+      </button>
+      <button
+        class="type-button {{recordType === 'INCOME' ? 'active income-active' : ''}}"
+        data-type="INCOME"
+        bindtap="switchRecordType"
+      >
+        收入
+      </button>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">金额</text>
+      <input class="form-input" type="digit" placeholder="0.00" value="{{amount}}" bindinput="onAmountInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">分类</text>
+      <input class="form-input" maxlength="64" placeholder="餐饮、交通、工资..." value="{{category}}" bindinput="onCategoryInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">日期</text>
+      <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
+        <view class="picker-value">{{recordDate}}</view>
+      </picker>
+    </view>
+    <view class="form-row note-row">
+      <text class="form-label">备注</text>
+      <input class="form-input" maxlength="512" placeholder="可选" value="{{note}}" bindinput="onNoteInput" />
+    </view>
+
+    <button class="save-button" loading="{{saving}}" disabled="{{saving}}" bindtap="submitRecord">
+      保存记录
+    </button>
+  </view>
+
+  <view wx:if="{{errorMessage}}" class="error-panel">
+    <text>{{errorMessage}}</text>
+  </view>
+
+  <view class="record-header">
+    <text class="section-title">最近记录</text>
+    <button class="refresh-button" loading="{{loading}}" disabled="{{loading}}" bindtap="refreshRecords">刷新</button>
+  </view>
+
+  <view wx:if="{{records.length === 0 && !loading}}" class="empty-panel">
+    <text>还没有记录</text>
+  </view>
+
+  <view class="record-list">
+    <view wx:for="{{records}}" wx:key="id" class="record-item">
+      <view class="record-main">
+        <view class="record-title-row">
+          <text class="record-category">{{item.category}}</text>
+          <text class="record-amount {{item.recordType === 'INCOME' ? 'income-text' : 'expense-text'}}">
+            {{item.signedAmountText}}
+          </text>
+        </view>
+        <view class="record-meta">
+          <text>{{item.typeText}}</text>
+          <text>{{item.recordDate}}</text>
+        </view>
+        <text wx:if="{{item.note}}" class="record-note">{{item.note}}</text>
+      </view>
+      <button class="delete-button" data-id="{{item.id}}" bindtap="deleteRecord">删除</button>
+    </view>
   </view>
 </view>
