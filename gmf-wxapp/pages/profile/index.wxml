@@ -1,6 +1,42 @@
 <view class="page">
-  <view class="panel">
-    <text class="title">我的</text>
-    <text class="muted">用户信息和授权状态后续在这里展开</text>
+  <view class="panel profile-card">
+    <view class="profile-main">
+      <image wx:if="{{avatarUrl}}" class="avatar" src="{{avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="avatar avatar-fallback">{{avatarText}}</view>
+      <view class="profile-copy">
+        <text class="title">{{displayName}}</text>
+        <text class="muted">openid: {{openidText}}</text>
+      </view>
+    </view>
+    <button class="refresh-button" loading="{{loading}}" disabled="{{loading}}" bindtap="refreshUserConfig">
+      刷新
+    </button>
+  </view>
+
+  <view wx:if="{{errorMessage}}" class="error-panel">
+    <text>{{errorMessage}}</text>
+  </view>
+
+  <view class="panel detail-panel">
+    <view class="detail-row">
+      <text class="detail-label">手机号</text>
+      <text class="detail-value">{{phoneText}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">unionid</text>
+      <text class="detail-value">{{unionidText}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">状态</text>
+      <text class="detail-value">{{statusText}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">最近登录</text>
+      <text class="detail-value">{{lastLoginText}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">服务端</text>
+      <text class="detail-value">{{serverBaseUrl}}</text>
+    </view>
   </view>
 </view>

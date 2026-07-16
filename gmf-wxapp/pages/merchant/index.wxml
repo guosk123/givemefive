@@ -1,6 +1,107 @@
 <view class="page">
-  <view class="panel">
-    <text class="title">小商户</text>
-    <text class="muted">进价、售价、库存和快速搜索后续在这里展开</text>
+  <view class="summary-grid">
+    <view class="summary-item">
+      <text class="summary-label">商品数</text>
+      <text class="summary-value">{{productCountText}}</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-label">总库存</text>
+      <text class="summary-value">{{stockTotalText}}</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-label">预计毛利</text>
+      <text class="summary-value">¥{{grossProfitTotalText}}</text>
+    </view>
+  </view>
+
+  <view class="panel total-panel">
+    <view class="total-row">
+      <text class="total-label">库存成本</text>
+      <text class="total-value">¥{{stockCostTotalText}}</text>
+    </view>
+    <view class="total-row">
+      <text class="total-label">预计售价</text>
+      <text class="total-value">¥{{stockRevenueTotalText}}</text>
+    </view>
+  </view>
+
+  <view class="panel form-panel">
+    <view class="form-title-row">
+      <text class="section-title">{{formTitle}}</text>
+      <button wx:if="{{editingProductId}}" class="cancel-button" bindtap="cancelEdit">取消</button>
+    </view>
+
+    <view class="form-row">
+      <text class="form-label">商品</text>
+      <input class="form-input" maxlength="128" placeholder="商品名称" value="{{productName}}" bindinput="onProductNameInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">进价</text>
+      <input class="form-input" type="digit" placeholder="0.00" value="{{purchasePrice}}" bindinput="onPurchasePriceInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">售价</text>
+      <input class="form-input" type="digit" placeholder="0.00" value="{{salePrice}}" bindinput="onSalePriceInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">库存</text>
+      <input class="form-input" type="number" placeholder="0" value="{{stockQuantity}}" bindinput="onStockQuantityInput" />
+    </view>
+    <view class="form-row">
+      <text class="form-label">单位</text>
+      <input class="form-input" maxlength="32" placeholder="件" value="{{unit}}" bindinput="onUnitInput" />
+    </view>
+    <view class="form-row remark-row">
+      <text class="form-label">备注</text>
+      <input class="form-input" maxlength="512" placeholder="可选" value="{{remark}}" bindinput="onRemarkInput" />
+    </view>
+
+    <button class="save-button" loading="{{saving}}" disabled="{{saving}}" bindtap="submitProduct">
+      {{saveButtonText}}
+    </button>
+  </view>
+
+  <view wx:if="{{errorMessage}}" class="error-panel">
+    <text>{{errorMessage}}</text>
+  </view>
+
+  <view class="product-header">
+    <text class="section-title">商品库存</text>
+    <button class="refresh-button" loading="{{loading}}" disabled="{{loading}}" bindtap="refreshProducts">刷新</button>
+  </view>
+
+  <view wx:if="{{products.length === 0 && !loading}}" class="empty-panel">
+    <text>还没有商品</text>
+  </view>
+
+  <view class="product-list">
+    <view wx:for="{{products}}" wx:key="id" class="product-item">
+      <view class="product-main" data-id="{{item.id}}" bindtap="editProduct">
+        <view class="product-title-row">
+          <text class="product-name">{{item.productName}}</text>
+          <text class="stock-text">{{item.stockQuantity}}{{item.unit || '件'}}</text>
+        </view>
+        <view class="price-grid">
+          <view>
+            <text class="price-label">进价</text>
+            <text class="price-value">¥{{item.purchasePriceText}}</text>
+          </view>
+          <view>
+            <text class="price-label">售价</text>
+            <text class="price-value">¥{{item.salePriceText}}</text>
+          </view>
+          <view>
+            <text class="price-label">单件毛利</text>
+            <text class="price-value profit-text">¥{{item.grossProfitText}}</text>
+          </view>
+        </view>
+        <view class="stock-row">
+          <text>成本 ¥{{item.stockCostText}}</text>
+          <text>售价 ¥{{item.stockRevenueText}}</text>
+        </view>
+        <text wx:if="{{item.remark}}" class="product-remark">{{item.remark}}</text>
+      </view>
+      <button class="delete-button" data-id="{{item.id}}" bindtap="deleteProduct">删除</button>
+    </view>
   </view>
 </view>

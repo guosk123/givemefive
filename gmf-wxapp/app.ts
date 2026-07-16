@@ -1,6 +1,8 @@
+import { serverConfig } from './config/server';
+
 App<IAppOption>({
   globalData: {
-    apiBaseUrl: 'http://localhost:8080'
+    apiBaseUrl: serverConfig.apiBaseUrl
   }
 });
 
